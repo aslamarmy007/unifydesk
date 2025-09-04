@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(45, 100%, 98%);
+  --foreground: hsl(222, 84%, 4.9%);
+  --muted: hsl(50, 50%, 96%);
+  --muted-foreground: hsl(215, 16%, 47%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(222, 84%, 4.9%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(222, 84%, 4.9%);
+  --border: hsl(45, 30%, 92%);
+  --input: hsl(45, 20%, 95%);
+  --primary: hsl(45, 100%, 60%);
+  --primary-foreground: hsl(222, 84%, 4.9%);
+  --secondary: hsl(45, 30%, 95%);
+  --secondary-foreground: hsl(222, 47%, 11%);
+  --accent: hsl(45, 50%, 93%);
+  --accent-foreground: hsl(222, 47%, 11%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(60, 9%, 98%);
+  --ring: hsl(45, 100%, 60%);
+  --radius: 0.75rem;
+  
+  /* Modern gradient variables */
+  --gradient-primary: linear-gradient(135deg, hsl(45, 100%, 60%) 0%, hsl(55, 100%, 65%) 100%);
+  --gradient-background: linear-gradient(135deg, hsl(45, 100%, 98%) 0%, hsl(50, 60%, 96%) 50%, hsl(45, 100%, 98%) 100%);
+  --glass-bg: hsla(0, 0%, 100%, 0.7);
+  --glass-border: hsla(45, 30%, 92%, 0.3);
+}
+
+.dark {
+  --background: hsl(222, 84%, 4.9%);
+  --foreground: hsl(45, 100%, 98%);
+  --muted: hsl(217, 33%, 17%);
+  --muted-foreground: hsl(215, 20%, 65%);
+  --popover: hsl(222, 84%, 4.9%);
+  --popover-foreground: hsl(45, 100%, 98%);
+  --card: hsl(222, 84%, 4.9%);
+  --card-foreground: hsl(45, 100%, 98%);
+  --border: hsl(217, 33%, 17%);
+  --input: hsl(217, 33%, 17%);
+  --primary: hsl(45, 100%, 60%);
+  --primary-foreground: hsl(222, 84%, 4.9%);
+  --secondary: hsl(217, 33%, 17%);
+  --secondary-foreground: hsl(45, 100%, 98%);
+  --accent: hsl(217, 33%, 17%);
+  --accent-foreground: hsl(45, 100%, 98%);
+  --destructive: hsl(0, 62%, 50%);
+  --destructive-foreground: hsl(45, 100%, 98%);
+  --ring: hsl(45, 100%, 60%);
+  --radius: 0.75rem;
+  
+  /* Dark mode gradient variables */
+  --gradient-primary: linear-gradient(135deg, hsl(45, 100%, 60%) 0%, hsl(55, 100%, 65%) 100%);
+  --gradient-background: linear-gradient(135deg, hsl(222, 84%, 4.9%) 0%, hsl(217, 33%, 17%) 50%, hsl(222, 84%, 4.9%) 100%);
+  --glass-bg: hsla(222, 84%, 4.9%, 0.8);
+  --glass-border: hsla(217, 33%, 17%, 0.5);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Modern animations */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% { 
+    transform: translateY(-25px) rotate(2deg);
+  }
+}
+
+@keyframes slideInUp {
+  0% { 
+    opacity: 0; 
+    transform: translateY(40px) scale(0.95);
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideInDown {
+  0% { 
+    opacity: 0; 
+    transform: translateY(-40px) scale(0.95);
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(255, 193, 7, 0.6);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.8; 
+    transform: scale(1.05);
+  }
+}
+
+@keyframes morphBackground {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-slide-in-down {
+  animation: slideInDown 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.animate-pulse-custom {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-morph-bg {
+  background-size: 200% 200%;
+  animation: morphBackground 10s ease infinite;
+}
+
+/* Glass morphism utilities */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-header {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+/* Modern button styles */
+.modern-button {
+  background: var(--gradient-primary);
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.modern-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.modern-button:hover::before {
+  left: 100%;
+}
+
+/* Enhanced input styles */
+.modern-input {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 2px solid transparent;
+  background: var(--input);
+}
+
+.modern-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Dark mode consistent input/select styling */
+.dark input,
+.dark textarea,
+.dark [role="combobox"] {
+  background-color: hsl(217, 33%, 17%) !important;
+  border-color: hsl(217, 33%, 25%) !important;
+  color: hsl(45, 100%, 98%) !important;
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark [role="combobox"]:focus {
+  background-color: hsl(217, 33%, 20%) !important;
+  border-color: var(--primary) !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: hsl(215, 20%, 65%) !important;
+}
+
+/* Error message auto-hide */
+.error-message {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(0);
+}
+
+.error-message.show {
+  animation: slideInUp 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.error-message.hide {
+  opacity: 0;
+  transform: translateY(-10px);
+}

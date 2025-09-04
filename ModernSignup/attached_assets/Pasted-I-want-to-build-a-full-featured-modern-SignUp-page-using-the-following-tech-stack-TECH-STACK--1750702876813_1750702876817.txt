@@ -1,0 +1,149 @@
+I want to build a full-featured modern SignUp page using the following tech stack:
+
+🔧 TECH STACK:
+- React.js (Frontend)
+- Node.js + Express.js (Backend)
+- MongoDB (Database, with .env configuration)
+- Tailwind CSS (Styling)
+- Firebase (Google Auth & OTP verification)
+- SMTP Email with OTP verification (store OTP in DB, validate input)
+- Three.js (for light animation in header)
+- Dark/Light mode toggle
+- India State & City Dropdown using API
+
+🎨 THEME:
+- Light Mode: Yellow and White Gradient
+- Dark Mode: Yellow and Black Gradient
+
+📦 PROJECT STRUCTURE:
+- Use .env files for secure config (Firebase keys, DB URI, SMTP credentials)
+
+🧩 HEADER:
+- Left: Logo + Brand Name (UnifyDesk)
+- Right: Light/Dark Mode Toggle (working switch with theme change)
+
+🧩 FOOTER:
+- Logo & Name
+- Address
+- Quick Access links
+- Other Pages links
+- Social Media icons
+- Copyright
+
+============================================
+📝 SIGNUP PAGE FUNCTIONALITY
+============================================
+
+✅ GENERAL:
+- Run session in background and refresh page after 1 hour.
+- Store the generated session ID in DB (`sessionStorage` can simulate session ID; on backend, store it in MongoDB).
+
+✅ WELCOME HEADER:
+- Any welcome message + animated icon using Three.js
+
+✅ SIGNUP WITH GOOGLE:
+- Integrate Firebase Google Sign-In using `.env` configuration (React side only)
+
+🧾 FORM FIELDS:
+
+1. **First Name** (Required)
+   - Min 1, Max 50 characters
+   - Letters only (no space, number, special char)
+   - Live validation + red error message under field
+   - Auto-scroll to field if blank on submit
+   - Fade error in 6s, hide with `display: none`
+   - Error size: 10px–12px
+
+2. **Last Name** (Optional)
+   - Same validation as First Name
+
+3. **Username** (Required)
+   - Min 3, Max 20 characters
+   - No spaces, but can include letters, numbers, underscores
+   - Live DB check via MongoDB (show "already taken" or green tick with "available")
+   - Show inline validation with tick/cross icon
+   - Username = Primary key
+
+4. **Gender** (Required)
+   - Options: Male, Female, Other
+   - Show error on submit if not selected
+
+5. **Date of Birth** (Required)
+   - Date picker
+   - Show error if empty on submit
+
+6. **Email** (Required)
+   - Format validation
+   - Live check from DB
+   - If email is new: show ✅ + **“Verify” button**
+   - On clicking "Verify", trigger:
+     - Inline OTP verification (6-digit input boxes)
+     - OTP retry/resend logic:
+       - Max 10 wrong attempts → block session for 5 hours
+       - Max 5 resends (1 resend allowed per 3 mins)
+     - Show remaining attempts and block messages
+     - Store OTP in MongoDB & verify from DB
+     - After verification: show ✅ + blue tick
+
+7. **Phone Number** (Required)
+   - Format: Fixed "+91", only 10 digits
+   - Same OTP verification as email (reuse logic)
+
+8. **Nationality**: Fixed to "Indian" (read-only)
+
+9. **State** (Required)
+   - Dropdown from Indian States API
+   - Show error if not selected
+
+10. **City** (Required)
+    - Cities loaded based on selected state from API
+    - Show error if not selected
+
+11. **Address** (Required)
+    - Plain text input
+    - Error handling like others
+
+12. **Password** (Required)
+    - Strength meter: red/yellow/orange/green based on strength
+    - Min 8 chars, includes:
+      - Uppercase, lowercase, digit, special character
+      - No spaces allowed
+
+13. **Confirm Password** (Required)
+    - Must match password
+    - Red outline if not matched, green if matched
+
+14. **Captcha (Visual)** (Required)
+    - Random alphanumeric captcha
+    - Must match before submission
+
+15. **Terms and Conditions** (Required)
+    - Checkbox: must agree before account creation
+
+✅ CREATE ACCOUNT BUTTON:
+- On click:
+  - Validate all fields
+  - Scroll to the first error
+  - If all valid: send data to Node.js backend API
+  - Store data in MongoDB
+  - Send SMTP confirmation email
+
+✅ BACKEND REQUIREMENTS (Node.js + Express):
+- API routes for:
+  - Signup (store form)
+  - Username/email/phone check
+  - OTP generation/verification
+  - Session handling (store session ID with expiry)
+- Use Mongoose for MongoDB schema validation
+- Secure config via `.env`
+
+✅ EXTRAS:
+- Responsive design
+- Clean Tailwind CSS
+- Use functional components + Hooks in React
+- Separate reusable components
+- All error messages fade in 6 seconds and then disappear
+
+✅ OUTPUT FORMAT:
+- Send complete code split into Frontend (`/client`) and Backend (`/server`)
+- Include .env template and instructions
